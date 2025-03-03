@@ -32,6 +32,16 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 make -j$(nproc)
 sudo make install
 
+## install GStreamer with libcamera support
+sudo apt update
+sudo apt install -y gstreamer1.0-tools gstreamer1.0-libav \
+                    gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+                    gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly \
+                    libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev \
+                    gstreamer1.0-libcamera
+
+make sure libcamera-hello is working
+
 ## command to check the gstreamer pipeline:
 gst-launch-1.0 libcamerasrc ! video/x-raw,format=NV12,width=640,height=480 ! videoconvert ! autovideosink
 
